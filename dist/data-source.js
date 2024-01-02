@@ -1,9 +1,10 @@
-import "reflect-metadata";
-import { DataSource } from "typeorm";
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppDataSource = void 0;
+require("reflect-metadata");
+const typeorm_1 = require("typeorm");
 //----------------------------------------------------
-
-export const AppDataSource = new DataSource({
+exports.AppDataSource = new typeorm_1.DataSource({
     type: "mysql",
     host: "localhost",
     port: 3307,
@@ -13,5 +14,5 @@ export const AppDataSource = new DataSource({
     entities: [`${__dirname}/models/*{.js,.ts}`],
     migrations: [`${__dirname}/migrations/*{.js,.ts}`],
     synchronize: false,
-    logging: false,  
-})
+    logging: false,
+});

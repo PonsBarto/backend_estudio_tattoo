@@ -1,12 +1,12 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
-
-export class CreateAppointments1703930584809 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.createTable(
-            new Table({
-                name: "Appointments",
-                columns: [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateAppointments1703930584809 = void 0;
+const typeorm_1 = require("typeorm");
+class CreateAppointments1703930584809 {
+    async up(queryRunner) {
+        await queryRunner.createTable(new typeorm_1.Table({
+            name: "Appointments",
+            columns: [
                 {
                     name: "id",
                     type: "int",
@@ -23,14 +23,11 @@ export class CreateAppointments1703930584809 implements MigrationInterface {
                     name: "director",
                     type: "int",
                 },
-                    ],
-                }),
-                true
-            );
+            ],
+        }), true);
     }
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
+    async down(queryRunner) {
         await queryRunner.dropTable("Appointments");
     }
-
 }
+exports.CreateAppointments1703930584809 = CreateAppointments1703930584809;
