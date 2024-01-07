@@ -10,8 +10,8 @@ export const AppDataSource = new DataSource({
     username: "root",
     password: "root",
     database: "backendtattoo",
-    entities: [`${__dirname}/models/*{.js,.ts}`],
-    migrations: [`${__dirname}/migrations/*{.js,.ts}`],
+    entities: [`${__dirname}/../models/*{.js,.ts}`],
+    migrations: [`${__dirname}/database/migrations/*{.js,.ts}`],
     synchronize: false,
     logging: false,  
 })

@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import { MigrationInterface, QueryRunner, Table, Timestamp } from "typeorm"
 
 export class CreateRole1703930537876 implements MigrationInterface {
 
@@ -15,13 +15,26 @@ export class CreateRole1703930537876 implements MigrationInterface {
                     generationStrategy: "increment",
                 },
                 {
-                    name: "title",
+                    name: "role_name",
+                    type: "enum",
+                    default: "user",
+                    enum: ["user", "admin", "super_admin"],
+                },
+                {
+                    name: "privilege",
                     type: "varchar",
                     length: "255",
                 },
                 {
-                    name: "director",
-                    type: "int",
+                    name: "created_At",
+                    type: "timestamp",
+                    default: "corrent_timestamp",
+                }, 
+                {
+                    name: "updated_At",
+                    type: "timestamp",
+                    default: "corrent_timestamp",
+                    onUpdate: "corrent_timestamp",
                 },
                     ],
                 }),
