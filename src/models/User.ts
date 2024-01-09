@@ -1,16 +1,45 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Role } from "./Role";
+import { Artist } from "./Artist";
+import { Appointments } from "./Appointments";
 
-@Entity('Users')
-export class User extends BaseEntity {
+
+@Entity ("user")
+export class Users extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id!: number
+    id!: number;
 
     @Column()
-    name!: string
-
-    @Column({unique: true})
-    email!: string
+    role_id!: number;
+    
+    @Column()
+    username!: string;
 
     @Column()
-    password!: string
+    name!: string;
+
+    @Column()
+    surname!: string;
+
+    @Column()
+    phone!: number;
+
+    @Column()
+    email!: string;
+
+    @Column()
+    password_hash!: string;
+
+    @ManyToOne(() Role, (role)=>role.users)
+    @JoinColumn ({name: "role_id"})
+    role!:Role[];
+
+    @ManyToOne(() => Artist, (artist) => artist.user)
+    @JoinColumn ({name: "artist_id"})
+    artist!: Artist[];
+
+    @OneToMany(() => Appointments, (appointment) => appointment.user_id)
+    clientAppointments!: Appointments[];
+
+
 }
