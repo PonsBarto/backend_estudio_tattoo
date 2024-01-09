@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { User } from "./User"
-import { Appointments } from "./Appointments"
+import { Appoinment } from "./Appointments";
 import { Design } from "./Design"
 
 @Entity('Artists')
@@ -32,6 +32,6 @@ export class Artist extends BaseEntity{
     @OneToMany(() => Design, (design) => design)
     design!: Design[];
 
-    @OneToMany(() => Appointments, (appointment) => appointment.artist)
-    clientAppointments!: Appointments[];
+    @OneToMany(() => Appoinment, (appointment) => appointment.artist)
+    clientAppointments!: Appoinment[];
 }

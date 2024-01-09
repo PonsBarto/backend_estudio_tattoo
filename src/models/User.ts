@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { Role } from "./Role";
 import { Artist } from "./Artist";
-import { Appointments } from "./Appointments";
+import { Appoinment } from "./Appointments";
 
 
 @Entity ("User")
@@ -30,16 +30,16 @@ export class User extends BaseEntity {
     @Column()
     password_hash!: string;
 
-    @ManyToOne(() => Role, (role)=>role.Users)
+    @ManyToOne(() => Role, (role)=>role.User)
     @JoinColumn ({name: "role_id"})
     role!:Role[];
 
-    @ManyToOne(() => Artist, (artist) => artist.Users)
+    @ManyToOne(() => Artist, (artist) => artist.User)
     @JoinColumn ({name: "artist_id"})
     artist!: Artist[];
 
-    @OneToMany(() => Appointments, (appointment) => appointment.Users)
-    clientAppointments!: Appointments[];
+    @OneToMany(() => Appoinment, (appointment) => appointment.User)
+    clientAppointments!: Appoinment[];
 
 
 }

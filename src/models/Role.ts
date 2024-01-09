@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinColumn } from "typeorm"
-import { Users } from "./User";
+import { User } from "./User";
 
 @Entity('Roles')
 export class Role extends BaseEntity{
@@ -18,7 +18,7 @@ export class Role extends BaseEntity{
     @Column()
     updated_At!: Date
 
-    @OneToMany(()=> user, (user)=> user.role)
+    @OneToMany(()=> User, (user)=> user.role)
     @JoinColumn({
         name: "user_role",
         referencedColumnName: "id"
