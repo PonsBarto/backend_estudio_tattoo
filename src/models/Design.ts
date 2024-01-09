@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from "typeorm"
+import { Artist } from "./Artist"
 
 @Entity('Designs')
 export class Design extends BaseEntity{
@@ -6,11 +7,24 @@ export class Design extends BaseEntity{
     id!: number
 
     @Column()
-    name!: string
-
-    @Column({unique: true})
-    email!: string
+    user_id!: string
 
     @Column()
-    password!: string
+    name!: string
+
+    @Column()
+    surname!: string
+
+    @Column()
+    porfolio!: string
+
+    @Column()
+    created_At!: Date
+
+    @Column()
+    updated_At!: Date
+
+    @ManyToOne(() => Artist, (artist) => artist.users)
+    @JoinColumn ({name: "user_id"})
+    artist!: Artist;
 }

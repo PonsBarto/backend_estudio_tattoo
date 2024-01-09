@@ -1,16 +1,36 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from "typeorm"
+import { User } from "./User";
+import { Artist } from "./Artist";
 
-@Entity('Appointments')
-export class Appointments extends BaseEntity{
+@Entity()
+export class Appoinment extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id!: number
+    id!: number;
 
     @Column()
-    name!: string
-
-    @Column({unique: true})
-    email!: string
+    user_id!: number;
 
     @Column()
-    password!: string
+    artist_id!: number;
+
+    @Column()
+    date!: string;
+
+    @Column()
+    hour!: string;
+
+    @Column()
+    created_At!: Date
+
+    @Column()
+    updated_At!: Date
+
+    @ManyToOne(() => User, (user) => user.role)
+    @JoinColumn ({name: "user_id"})
+    user!: User;
+
+    @ManyToOne(() => Artist, (artist) => artist.users)
+    @JoinColumn ({name: "artist_id"})
+    artist!: Artist;
+
 }

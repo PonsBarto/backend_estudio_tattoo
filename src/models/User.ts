@@ -4,15 +4,15 @@ import { Artist } from "./Artist";
 import { Appointments } from "./Appointments";
 
 
-@Entity ("user")
-export class Users extends BaseEntity {
+@Entity ("User")
+export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!: number;
 
     @Column()
     role_id!: number;
     
-    @Column()
+    @Column({unique: true})
     username!: string;
 
     @Column()
@@ -21,24 +21,24 @@ export class Users extends BaseEntity {
     @Column()
     surname!: string;
 
-    @Column()
+    @Column({unique: true})
     phone!: number;
 
-    @Column()
+    @Column({unique: true})
     email!: string;
 
     @Column()
     password_hash!: string;
 
-    @ManyToOne(() Role, (role)=>role.users)
+    @ManyToOne(() => Role, (role)=>role.Users)
     @JoinColumn ({name: "role_id"})
     role!:Role[];
 
-    @ManyToOne(() => Artist, (artist) => artist.user)
+    @ManyToOne(() => Artist, (artist) => artist.Users)
     @JoinColumn ({name: "artist_id"})
     artist!: Artist[];
 
-    @OneToMany(() => Appointments, (appointment) => appointment.user_id)
+    @OneToMany(() => Appointments, (appointment) => appointment.Users)
     clientAppointments!: Appointments[];
 
 
