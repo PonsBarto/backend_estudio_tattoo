@@ -30,16 +30,25 @@ export class User extends BaseEntity {
     @Column()
     password_hash!: string;
 
-    @ManyToOne(() => Role, (role)=>role.User)
-    @JoinColumn ({name: "role_id"})
-    role!:Role[];
+    //@ManyToOne(() => Role, (role)=>role.User)
+    //@JoinColumn ({name: "role_id"})
+    //role!:Role[];
 
-    @ManyToOne(() => Artist, (artist) => artist.User)
-    @JoinColumn ({name: "artist_id"})
-    artist!: Artist[];
+    //@ManyToOne(() => Artist, (artist) => artist.User)
+    //@JoinColumn ({name: "artist_id"})
+    //artist!: Artist[];
 
-    @OneToMany(() => Appoinment, (appointment) => appointment.User)
+    //@OneToMany(() => Appoinment, (appointment) => appointment.User)
+    //clientAppointments!: Appoinment[];
+
+    @ManyToOne(() => Role, (role) => role.users)
+    @JoinColumn({ name: "role_id" })
+    role!: Role;
+
+    @ManyToOne(() => Artist, (artist) => artist.users)
+    @JoinColumn({ name: "artist_id" })
+    artist!: Artist;
+
+    @OneToMany(() => Appoinment, (appointment) => appointment.user) 
     clientAppointments!: Appoinment[];
-
-
 }
